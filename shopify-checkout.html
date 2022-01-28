@@ -1,0 +1,50 @@
+{% if first_time_accessed %}
+<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+	event: 'purchase',
+	  ecommerce: {
+		currency: '{{ currency }}',
+		value: {{total_price | times: 0.01}},
+		tax: {{tax_price | times: 0.01}},
+		shipping: {{shipping_price | times: 0.01}},
+		affiliation: 'MOBO',
+		transaction_id: '{{ order_number }}',
+		items: [
+		{% for line_item in line_items %}{
+		  item_name: '{{line_item.title}}',
+		  item_id: '{{line_item.product_id}}',
+		  price: '{{line_item.line_price | times: 0.01}}',
+		  quantity: '{{line_item.quantity}}'
+		},{% endfor %}
+	]
+	  }	
+	});
+</script>
+{% endif %}
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','XXX-XXXXXXX');</script>
+
+<!-- AdRoll Enhanced Conversion Tracking -->
+{% if first_time_accessed %}
+<script type = "text/javascript">
+ adroll.track("purchase", {
+"ORDER_ID": {{ order_number }},
+"conversion_value": "{{total_price | times: 0.01}}",
+"currency": "{{ currency }}",
+"products": [
+{% for line_item in line_items %}
+{
+"price": "{{line_item.line_price | times: 0.01}}",
+"product_id": "{{line_item.product_id}}",
+"quantity": "{{line_item.quantity}}"
+},
+{% endfor %}
+]
+
+}); 
+</script>
+{% endif %}
