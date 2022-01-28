@@ -30,23 +30,3 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','XXX-XXXXXXX');</script>
-
-<!-- AdRoll Enhanced Conversion Tracking -->
-{% if first_time_accessed %}
-<script type = "text/javascript">
- 	adroll.track("purchase", {
-	"ORDER_ID": {{ order_number }},
-	"conversion_value": "{{total_price | times: 0.01}}",
-	"currency": "{{ currency }}",
-	"products": [
-		{% for line_item in line_items %}
-		{
-			"price": "{{line_item.line_price | times: 0.01}}",
-			"product_id": "{{line_item.product_id}}",
-			"quantity": "{{line_item.quantity}}"
-		},
-		{% endfor %}
-	]
-	}); 
-</script>
-{% endif %}
