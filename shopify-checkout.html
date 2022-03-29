@@ -8,7 +8,6 @@
 		value: {{total_price | times: 0.01}},
 		tax: {{tax_price | times: 0.01}},
 		shipping: {{shipping_price | times: 0.01}},
-		affiliation: 'MOBO',
 		transaction_id: '{{ order_number }}',
 		items: [
 			{% for line_item in line_items %}
