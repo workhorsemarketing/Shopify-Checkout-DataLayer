@@ -9,4 +9,4 @@ A sample DataLayer that assumes the following:
 
 * Replace `XXX-XXXXXXX` with your GTM container ID
 * Paste into 'Order Status Page" located: `https://YOUR-SITE.myshopify.com/admin/settings/checkout`
-* Setup GA4 `purchase` event in GTM along with the required data layer variables
+* Setup GA4 `purchase` event in GTM along with the required data layer variables and trigger
